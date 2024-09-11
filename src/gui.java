@@ -13,6 +13,6 @@ public class gui extends JFrame {
     }
 
     public static void main(String[] args) {
-        gui g = new gui();
+//        gui g = new gui();
     }
 }

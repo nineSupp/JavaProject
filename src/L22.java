@@ -65,19 +65,19 @@ public class L22 {
         return uInput;
     }
 
-    private boolean checkCorrect(String engWord, String uInput) {
+    public boolean checkCorrect(String engWord, String uInput) {
         if (uInput.equals("quit")) { this.isPlay = false; }
         return engWord.equals(uInput);
     }
 
-    private void displayCorrect(String japWord, String engWord) {
+    public void displayCorrect(String japWord, String engWord) {
         System.out.println(this.correctFormat);
         System.out.println("\tYour score is: " + this.scoreCount + "\t");
         System.out.println("\t" + japWord + " = " + engWord + "\t");
         System.out.println("*".repeat(this.correctFormat.length()) + "\n");
     }
 
-    private void displayWrong(String japWord, String engWord) {
+    public void displayWrong(String japWord, String engWord) {
         String wrongFormat = "********* Wrong! *********";
         System.out.println(wrongFormat);
         System.out.println("\tYour score is: " + this.scoreCount + "\t");
@@ -85,7 +85,7 @@ public class L22 {
         System.out.println("*".repeat(wrongFormat.length()) + "\n");
     }
 
-    private void displayQuit() {
+    public void displayQuit() {
         String quitFormat = "********** Quit **********";
         System.out.println(quitFormat);
         System.out.println("\tYour score is: " + this.scoreCount + "\t");
