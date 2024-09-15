@@ -1,3 +1,16 @@
+/*
+ * (Lab 7-8: Counter)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L7-8: Counter.java
+ *
+ * ==================================================================================
+ * Write a program that counts the number of vowels and consonants in a given string.
+ * Ignore spaces and treat the input as case-insensitive.
+ * ==================================================================================
+ */
+
+
 import java.util.Scanner;
 
 public class Counter {

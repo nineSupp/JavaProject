@@ -1,3 +1,16 @@
+/*
+ * (Lab 7-6: Password)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L7-6: Password.java
+ *
+ * ==================================================================================
+ * Write a program that takes input for a Password twice, and both inputs must match.
+ * Use (compareTo, equals, ==) for comparison.
+ * ==================================================================================
+ */
+
+
 import java.util.Scanner;
 
 public class Password {

@@ -43,18 +43,18 @@ public class Cipher {
             System.out.println("Invalid input for n.");
 
         String alphabets = "abcdefghijklmnopqrstuvwxyz";
-        String cipheredText = "";
+        StringBuilder cipheredText = new StringBuilder();
 
         for(int i = 0; i < text.length(); i++) {
             int dexAlpha = (alphabets.indexOf(text.charAt(i)) + n) % alphabets.length();
             if (text.charAt(i) == ' ') {
-                cipheredText += " ";
+                cipheredText.append(" ");
             }
             else if (dexAlpha < 0) {
-                cipheredText += alphabets.charAt(alphabets.length() + dexAlpha);
+                cipheredText.append(alphabets.charAt(alphabets.length() + dexAlpha));
             }
             else {
-                cipheredText += alphabets.charAt(dexAlpha);
+                cipheredText.append(alphabets.charAt(dexAlpha));
             }
         }
 
