@@ -1,15 +1,20 @@
 /*
-    Lab 8.2: Calculate
-
-    Instruction: Write a method called calculateAverage(...) that accepts an array of integers
-    and returns the average of the array. Then, display the output.
-
-    For example, given:
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-    Output:
-	    Average: 5.5
-*/
+ * (Lab 8)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L8.2: Calculate.java
+ *
+ * ==================================================================================
+ * Instruction: Write a method called calculateAverage(...) that accepts an array of
+ * integers and returns the average of the array. Then, display the output.
+ *
+ * For example, given:
+ *      int[] arr  = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+ *
+ * Output:
+ *      Average: 5.5
+ * ==================================================================================
+ */
 
 
 public class Calculate {

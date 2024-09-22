@@ -1,9 +1,14 @@
 /*
-    Lab 8.1: DisplayName
-
-    Instruction: Create DisplayName.java and invoke display() to display your name.
-    You can change your name
-*/
+ * (Lab 8)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L8.1: DisplayName.java
+ *
+ * ==================================================================================
+ * Instruction: Create DisplayName.java and invoke display() to display your name.
+ * You can change your name
+ * ==================================================================================
+ */
 
 
 class Name {

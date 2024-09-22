@@ -1,7 +1,11 @@
 /*
-    Lab 8.3: Account
-
-    Instruction: Given Account class with the following attributes and methods:
+ * (Lab 8)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L8.6: Main.java
+ *
+ * ==================================================================================
+ * Instruction: Given Account class with the following attributes and methods:
         * Attributes:
             - accountNumber(String)
             - accountHolder(String)
@@ -31,7 +35,8 @@
         Account Number: 123456789
         Account Holder: John Doe
         Current Balance: 600.0
-*/
+ * ==================================================================================
+ */
 
 
 class Account {
@@ -71,24 +76,49 @@ class Account {
     }
 }
 
-public class AccountTest {
-    public static void main(String[] args) {
-        Account act1 = new Account("123456789", "John Doe", 500.0);
-        act1.displayAccountDetails();
-        System.out.println();
-        System.out.println("After transaction:");
-        act1.deposite(100);
-        act1.displayAccountDetails();
+public class Main {
+    public class AccountTest {
+        public static void main(String[] args) {
+            Account act1 = new Account("123456789", "John Doe", 500.0);
+            act1.displayAccountDetails();
+            System.out.println();
+            System.out.println("After transaction:");
+            act1.deposite(100);
+            act1.displayAccountDetails();
 
-        System.out.println();
-        Account act2 = new Account("111111111", "Steve Roger", 0);
-        act2.displayAccountDetails();
-        System.out.println();
-        System.out.println("After transaction:");
-        act2.withdraw(100);
-        System.out.println();
-        System.out.println("After transaction:");
-        act2.deposite(100);
-        act2.displayAccountDetails();
+            System.out.println();
+            Account act2 = new Account("111111111", "Steve Roger", 0);
+            act2.displayAccountDetails();
+            System.out.println();
+            System.out.println("After transaction:");
+            act2.withdraw(100);
+            System.out.println();
+            System.out.println("After transaction:");
+            act2.deposite(100);
+            act2.displayAccountDetails();
+
+            // Friend number 1 info.
+            System.out.println();
+            Account friendAcc = new Account("222222222", "Albert Einstein", 1_200_000);
+            friendAcc.displayAccountDetails();
+            System.out.println();
+            System.out.println("After transaction:");
+            friendAcc.withdraw(100_000.47);
+            friendAcc.displayAccountDetails();
+
+            // Friend number 2 info.
+            System.out.println();
+            Account friend2Acc = new Account("333333333", "Suppatouch Srinual", -10);
+            friend2Acc.displayAccountDetails();
+            System.out.println();
+            System.out.println("After transaction:");
+            friend2Acc.withdraw(100_000.47);
+            friend2Acc.displayAccountDetails();
+            System.out.println();
+            System.out.println("After transaction:");
+            friend2Acc.deposite(100_000_000);
+            friend2Acc.displayAccountDetails();
+            System.out.println();
+        }
     }
 }
