@@ -57,36 +57,129 @@
 import javax.swing.*;
 
 public class BankAccount {
+    // 1.2. Creating attributes: Instance Variables.
     private String accountNumber;
     private String accountHolderName;
     private double balance;
 
+    // 1.3. Creating constructors.
+    // 1.3.1. Creating a normal constructor (Default).
+    // Fix this.
     public BankAccount() {
         this.accountNumber = "";
         this.accountHolderName = "";
-        this.balance = 0.0;
+        this.balance = 500.0;
     }
 
     public BankAccount(String accountNumber, String accountHolderName, double balance) {
         try {
-            if (accountNumber.length() != 10 || balance < 500) {
-                if (balance < 500) {
-                    throw new IllegalArgumentException("Insufficient funds");
+            if (accountNumber.length() != 10 || balance < 500 || checkDigit(accountNumber)) {
+                if (accountNumber.length() != 10) {
+                    throw new IllegalArgumentException("2");   // Insufficient funds error.
                 }
-                throw new IllegalArgumentException("Invalid account number");
+                else if (balance < 500) {          // Account Number != 10.
+                    throw new IllegalArgumentException("1");
+                }
+                else {
+                    throw new IllegalArgumentException("3");      // Account Number contains non-digit.
+                }
             }
+
             this.accountNumber = accountNumber;
             this.accountHolderName = accountHolderName;
             this.balance = balance;
         }
+
         catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, "Invalid account number");
+            String message = e.getMessage();
+
+            switch (message) {
+                case "1" -> JOptionPane.showMessageDialog(null, "Insufficient Funds.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                case "2" -> JOptionPane.showMessageDialog(null, "Account number must be exactly "
+                        + "10 characters long", "Error!", JOptionPane.ERROR_MESSAGE);
+                case "3" -> JOptionPane.showMessageDialog(null, "Invalid Account Number contains"
+                                + " non-digit.", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
+    private boolean checkDigit(String accountNumber) {
+        boolean haveDigit = false;
+        for(int i = 0; i < accountNumber.length(); i++) {
+            if (!Character.isDigit(accountNumber.charAt(i))) {
+                haveDigit = true;
+                break;
+            }
+        }
+        return haveDigit;
+    }
 
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            String displayAmount = String.format("Deposit: %.2f", amount);
+            JOptionPane.showMessageDialog(null, displayAmount, "Deposit",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
 
-    public static void main(String[] args) {
+    public void withdraw(double amount) {
+        if (amount <= this.getBalance()) {
+            this.balance -= amount;
+            String displayAmount = String.format("Withdrew: %.2f", amount);
+            JOptionPane.showMessageDialog(null, displayAmount, "Withdrawal",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Insufficient funds or invalid withdraw amount",
+                    "Error!", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
+    public void checkBalance() {
+        System.out.println("Current Balance: " + this.balance);
+    }
+
+    public String getAccountNumber() {
+        return "Account Number: " + this.accountNumber + "\n";
+    }
+
+    public String getAccountHolderName() {
+        return "Account Holder Name: " + this.accountHolderName + "\n";
+    }
+
+    public double getBalance() {
+        return this.balance;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        if (accountNumber.length() == 10) {
+            this.accountNumber = accountNumber;
+        }
+        else {
+            if (accountNumber.length() < 10) {
+                System.out.println("The length of account number is less than 10.");
+            }
+            else {
+                System.out.println("The length of account number is more than 10.");
+            }
+        }
+    }
+
+    public void setAccountHolderName(String accountHolderName) {
+        this.accountHolderName = accountHolderName;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("""
+                        =====================================================
+                         * Account Number: %s
+                         * \
+                        Account Holder Name: %s
+                         * Balance: %.2f
+                        =====================================================""",
+                this.accountNumber, this.accountHolderName, this.balance);
     }
 }
