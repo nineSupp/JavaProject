@@ -54,56 +54,67 @@
  */
 
 
+/*  =================================================================================
+    *** Please note: I decided to display error through the use of Swing GUI ***
+    *               Thus, error message is just a pop-up window             *
+    =================================================================================
+*/
+
+
 import javax.swing.*;
 
 public class BankAccount {
-    // 1.2. Creating attributes: Instance Variables.
+    // 1.2. Creating attributes: Instance Variables for BankAccount.
     private String accountNumber;
     private String accountHolderName;
     private double balance;
 
     // 1.3. Creating constructors.
-    // 1.3.1. Creating a normal constructor (Default).
+    // 1.3.1. Create a default constructor.
     // Fix this.
     public BankAccount() {
         this.accountNumber = "";
         this.accountHolderName = "";
-        this.balance = 500.0;
+        this.balance = 0.0;
     }
 
+    // 1.3.2. Create a constructor with full parameters to initialize the instance variables.
     public BankAccount(String accountNumber, String accountHolderName, double balance) {
         try {
             if (accountNumber.length() != 10 || balance < 500 || checkDigit(accountNumber)) {
+                // The order importance when it comes to what to check first.
+                // a. I decided to go with checking
                 if (accountNumber.length() != 10) {
-                    throw new IllegalArgumentException("2");   // Insufficient funds error.
+                    throw new IllegalArgumentException("2");        // Insufficient funds error.
                 }
-                else if (balance < 500) {          // Account Number != 10.
+                else if (balance < 500) {                           // Account Number != 10.
                     throw new IllegalArgumentException("1");
                 }
                 else {
-                    throw new IllegalArgumentException("3");      // Account Number contains non-digit.
+                    throw new IllegalArgumentException("3");        // Account Number contains non-digit.
                 }
             }
-
-            this.accountNumber = accountNumber;
-            this.accountHolderName = accountHolderName;
-            this.balance = balance;
+            else {
+                this.accountNumber = accountNumber;
+                this.accountHolderName = accountHolderName;
+                this.balance = balance;
+            }
         }
-
         catch (IllegalArgumentException e) {
             String message = e.getMessage();
 
             switch (message) {
-                case "1" -> JOptionPane.showMessageDialog(null, "Insufficient Funds.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                case "2" -> JOptionPane.showMessageDialog(null, "Account number must be exactly "
-                        + "10 characters long", "Error!", JOptionPane.ERROR_MESSAGE);
-                case "3" -> JOptionPane.showMessageDialog(null, "Invalid Account Number contains"
-                                + " non-digit.", "Error!", JOptionPane.ERROR_MESSAGE);
+                case "1" -> this.displayMessage("Invalid: Insufficient funds to open an account",
+                        "Error");
+                case "2" -> this.displayMessage("Invalid: Account number must be exactly 10 characters long"
+                        , "Error");
+                case "3" -> this.displayMessage("Invalid: Account number consists of non-digit character",
+                        "Error");
             }
         }
     }
 
+    // This is a custom method is to check if there is a non-digit in variable accountNumber.
     private boolean checkDigit(String accountNumber) {
         boolean haveDigit = false;
         for(int i = 0; i < accountNumber.length(); i++) {
@@ -115,25 +126,52 @@ public class BankAccount {
         return haveDigit;
     }
 
-    public void deposit(double amount) {
-        if (amount > 0) {
-            this.balance += amount;
-            String displayAmount = String.format("Deposit: %.2f", amount);
-            JOptionPane.showMessageDialog(null, displayAmount, "Deposit",
+    // This is a custom method to display a pop-up message.
+    private void displayMessage(String inputMessage, String inputTile) {
+        switch (inputTile) {
+            case "Error" -> JOptionPane.showMessageDialog(null, inputMessage, "Error!",
+                    JOptionPane.ERROR_MESSAGE);
+            case "Deposit" -> JOptionPane.showMessageDialog(null, inputMessage, "Deposit!",
+                    JOptionPane.INFORMATION_MESSAGE);
+            case "Withdraw" -> JOptionPane.showMessageDialog(null, inputMessage, "Withdraw!",
                     JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
+    // 1.4: Perform the data validation:
+    //  a. Deposit - the amount must be greater than 0.
+    //  b. Withdraw - the amount must be greater than 0, and it should not exceed the balance.
+    public void deposit(double amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            String displayAmount = String.format("Deposit: %.2f", amount);
+            // Every time that an object deposit the money, it'll display the amount.
+            this.displayMessage(displayAmount, "Deposit");
+        }
+    }
+
     public void withdraw(double amount) {
-        if (amount <= this.getBalance()) {
+        if (amount > 0 && amount <= this.getBalance()) {
             this.balance -= amount;
-            String displayAmount = String.format("Withdrew: %.2f", amount);
-            JOptionPane.showMessageDialog(null, displayAmount, "Withdrawal",
-                    JOptionPane.INFORMATION_MESSAGE);
+            String displayAmount = String.format("Withdraw: %.2f", amount);
+            // Every time that an object withdraw the money, it'll display the amount or error.
+            this.displayMessage(displayAmount, "Withdraw");
         }
         else {
-            JOptionPane.showMessageDialog(null, "Insufficient funds or invalid withdraw amount",
-                    "Error!", JOptionPane.ERROR_MESSAGE);
+            if (amount <= 0) {
+                if (amount == 0) {
+                    // Withdrawal amount is 0
+                    this.displayMessage("Withdrawal amount is 0", "Error");
+                }
+                else {
+                    // Withdrawal amount is less than 0.
+                    this.displayMessage("Withdrawal amount is less than 0", "Error");
+                }
+            }
+            else {
+                // Insufficient Funds in Balance.
+                this.displayMessage("Withdraw amount exceed the balance", "Error");
+            }
         }
     }
 
@@ -141,18 +179,23 @@ public class BankAccount {
         System.out.println("Current Balance: " + this.balance);
     }
 
+    // Basic getter and setter methods.
+    // 1. return a string of variable accountNumber.
     public String getAccountNumber() {
         return "Account Number: " + this.accountNumber + "\n";
     }
 
+    // 2. return a string of variable accountHolderName.
     public String getAccountHolderName() {
         return "Account Holder Name: " + this.accountHolderName + "\n";
     }
 
+    // 3. return a string of variable balance.
     public double getBalance() {
         return this.balance;
     }
 
+    // 4. update method to the variable accountNumber if a certain conditions met.
     public void setAccountNumber(String accountNumber) {
         if (accountNumber.length() == 10) {
             this.accountNumber = accountNumber;
@@ -167,10 +210,12 @@ public class BankAccount {
         }
     }
 
+    // 5. update method to the variable accountHolderName.
     public void setAccountHolderName(String accountHolderName) {
         this.accountHolderName = accountHolderName;
     }
 
+    // Overriding the default java.lang.Object to our own toString() condition.
     @Override
     public String toString() {
         return String.format("""
