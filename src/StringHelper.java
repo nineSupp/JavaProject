@@ -82,20 +82,9 @@ public class StringHelper {
         }
         else {
             String reversed = "";
-            int dex = input.split(" ").length;
-
-            while (dex > 0) {
-                String word = substring(input, dex);
-                for(int i = word.length() - 1; i >= 0; i--) {
-                    reversed += word.charAt(i);
-                }
-
-                if (dex < input.length() - 1) {
-                    reversed += " ";
-                }
-                dex--;
+            for (int i = input.length() - 1; i >= 0; i--) {
+                reversed += input.charAt(i);
             }
-
             return reversed;
         }
     }
