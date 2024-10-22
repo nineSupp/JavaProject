@@ -1,3 +1,15 @@
+/*
+ * (Lab 11)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L11 3.5: mainShape.java
+ *
+ * ==================================================================================
+ * Main class for Shape to run.
+ * ==================================================================================
+ */
+
+
 import java.util.ArrayList;
 import java.util.List;
 

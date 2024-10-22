@@ -2,7 +2,7 @@
  * (Homework 10)
  * Name: Suppatouch Srinual (Nine)
  * ID: 2420210037
- * PA 10.1: StringHelper.java
+ * PA 10.5: StringHelper.java
  *
  * ==================================================================================
  * You are tasked with implementing a utility class called StringHelper

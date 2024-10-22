@@ -1,3 +1,16 @@
+/*
+ * (Lab 11)
+ * Name: Suppatouch Srinual (Nine)
+ * ID: 2420210037
+ * L11 2.4: Triangle.java
+ *
+ * ==================================================================================
+ * Create Subclasses: Circle, Rectangle, and Triangle. Each providing its own
+ * implementation of the draw() method.
+ * ==================================================================================
+ */
+
+
 import java.awt.*;
 
 public class Triangle extends Shape {

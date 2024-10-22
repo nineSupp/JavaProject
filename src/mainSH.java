@@ -2,7 +2,7 @@
  * (Homework 10)
  * Name: Suppatouch Srinual (Nine)
  * ID: 2420210037
- * PA 10.2: mainSH.java
+ * PA 10.6: mainSH.java
  *
  * ==================================================================================
  * main test for StringHelper.java
